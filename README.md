@@ -1,16 +1,41 @@
-# personal_expense
+#  💰 Personal Expenses 💰
 
-A new Flutter project.
+Personal Expense application is designed in the flutter, which is the Dart SDK For developing mobile friendly and responsive application. It use complex state mangment, custom widgets and many more. The Personal Expense application gives us the way to manage our personal expesnes usiing customized theme and other very cool features.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Installation
 
-A few resources to get you started if this is your first Flutter project:
+Use the flutter to run app in debug mode
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Check Requirements
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter doctor
+```
+
+Run App in Debug Mode
+
+```bash
+flutter run
+```
+
+## Usage
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+```
+--------------------------------------------------------------------------------
+
+## ♥️️ Contributing ♥️️
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+--------------------------------------------------------------------------------
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
