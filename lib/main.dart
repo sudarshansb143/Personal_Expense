@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.purple,
           accentColor: Colors.amber,
           fontFamily: 'Quicksand',
-
+          scaffoldBackgroundColor: Colors.white,
           //Global appbar theme
           appBarTheme: AppBarTheme(
               textTheme: ThemeData.light().textTheme.copyWith(

@@ -38,7 +38,7 @@ class TransactionList extends StatelessWidget {
               Column(
                 children: userTransactions
                     .map((x) => Card(
-                          elevation: 6,
+                          elevation: 10,
                           child: Row(
                             children: [
                               Container(
