@@ -3,10 +3,17 @@ import 'package:personal_expense/widgets/new_transaction.dart';
 import 'package:personal_expense/widgets/transaction_list.dart';
 import './widgets/transaction_list.dart';
 import './models/transactions.dart';
-import 'package:intl/intl.dart';
 import './widgets/charts.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  //This method  don't allows the potrait mode for the application but it  requires the servie.dart pkg
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitUp,
+  ]);
+
   runApp(MyApp());
 }
 
@@ -44,7 +51,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Transactions> userTransactions = [];
 
 //Generate recent trasnactions
-
   List<Transactions> get recentTransaction {
     return userTransactions.where((element) {
       return element.date.isAfter(
@@ -55,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
+//Adding the new trasnaction to list
   void _addTransaction(String txTitle, double txAmount, DateTime selectedDate) {
     final tx = Transactions(
       amount: txAmount,
@@ -67,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+// Inititating the new transaction
   void startNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
         context: ctx,
@@ -82,7 +90,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 //Deleting transactions using id
-
   void deleteTrasnaction(String id) {
     setState(() {
       return userTransactions.removeWhere((element) => element.id == id);
@@ -91,21 +98,26 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Personal Expense",
-        ),
-        actions: [
-          //Buttion in action bar
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              startNewTransaction(context);
-            },
-          ),
-        ],
+    final availHeight = MediaQuery.of(context).size.height;
+
+    //This  method is inside the build method because it needs the context objects
+    final appBar = AppBar(
+      title: Text(
+        "Personal Expense",
       ),
+      actions: [
+        //Buttion in action bar
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () {
+            startNewTransaction(context);
+          },
+        ),
+      ],
+    );
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -113,8 +125,19 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Chart(recentTransaction),
-                TransactionList(userTransactions, deleteTrasnaction),
+                Container(
+                    height: (availHeight -
+                            appBar.preferredSize.height -
+                            MediaQuery.of(context).padding.top) *
+                        0.3,
+                    child: Chart(recentTransaction)),
+                Container(
+                    height: (availHeight -
+                            appBar.preferredSize.height -
+                            MediaQuery.of(context).padding.top) *
+                        0.7,
+                    child:
+                        TransactionList(userTransactions, deleteTrasnaction)),
               ],
             ),
           ],
